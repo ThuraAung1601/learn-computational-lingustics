@@ -23,7 +23,13 @@ def clean_sentence(sentence):
     cleaned = CleanPattern.sub("",sentence)
     return cleaned
 
-BreakPattern = re.compile(r"((?<!" + ssSymbol + r")["+ myConsonant + r"](?![" + aThat + ssSymbol + r"[" + myConsonant + r"]" + r"])" + r"|[" + enChar + otherChar + r"])", re.UNICODE)
+BreakPattern = re.compile(r"((?<!" + ssSymbol + r")["+ myConsonant + r"](?![" + aThat + ssSymbol + r"])" + r"|[" + enChar + otherChar + r"])",re.UNICODE)
+
+def syllable(sentence):
+    sentence = sentence.replace(" ",'')
+    sentence = sentence.replace("္","်")
+    line = BreakPattern.sub("/"+r"\1",sentence)
+    return line
 
 data = ""
 
@@ -35,7 +41,7 @@ try:
          cleaned = clean_sentence(sentence)
          
          # start breaking
-         line = BreakPattern.sub(sOption + r"\1", cleaned)
+         line = syllable(cleaned)
          data += line
         
 except:
