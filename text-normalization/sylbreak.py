@@ -1,11 +1,10 @@
-mport argparse
+import argparse
 import re
 
 parser = argparse.ArgumentParser(description='Syllable segmentation for Myanmar language')
 parser.add_argument('-i', '--input', type=str, help='input file', required=True)
 parser.add_argument('-o', '--output', type=str, default='sylbreak_out.txt', help='output file')
 parser.add_argument('-s', '--separator', type=str, default=r'|', help='the separator option for syllable (e.g. -s "/"), default is "|"')
-parser.add_argument('-p', '--print', type=bool, default=0, help='printing both input and syllable segmented sentences')
 args = parser.parse_args()
 
 inputFile = getattr(args, 'input')
@@ -15,10 +14,16 @@ sOption = getattr(args, 'separator')
 myConsonant = r"က-အ"
 enChar = r"a-zA-Z0-9"
 otherChar = r"ဣဤဥဦဧဩဪဿ၌၍၏၀-၉၊။!-/:-@[-`{-~\s"
-ssSymbol = r'္'
-aThat = r'်'
+ssSymbol = r"္"
+aThat = r"်င်္"
 
-BreakPattern = re.compile(r"((?<!" + ssSymbol + r")["+ myConsonant + r"](?![" + aThat + ssSymbol + r"])" + r"|[" + enChar + otherChar + r"])")
+CleanPattern = re.compile(r'\d+|[၊။!-/:-@[-`{-~\t ]|[A-za-z0-9]')
+
+def clean_sentence(sentence):
+    cleaned = CleanPattern.sub("",sentence)
+    return cleaned
+
+BreakPattern = re.compile(r"((?<!" + ssSymbol + r")["+ myConsonant + r"](?![" + aThat + ssSymbol + r"[" + myConsonant + r"]" + r"])" + r"|[" + enChar + otherChar + r"])", re.UNICODE)
 
 data = ""
 
@@ -26,15 +31,11 @@ data = ""
 try:
    with open(inputFile, encoding='utf-8') as file:
       for line in file:
-         # print before
-         if pOption:
-            print("input:\t" + line)
-
-         # remove space
-         line = line.replace(" ",'')
-
+         # clean the task
+         cleaned = clean_sentence(sentence)
+         
          # start breaking
-         line = BreakPattern.sub(sOption + r"\1", line)
+         line = BreakPattern.sub(sOption + r"\1", cleaned)
          data += line
         
 except:
