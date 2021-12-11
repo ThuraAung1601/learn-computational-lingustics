@@ -11,24 +11,18 @@ inputFile = getattr(args, 'input')
 outFile = getattr(args, 'output')
 sOption = getattr(args, 'separator')
 
-myConsonant = r"က-အ"
-enChar = r"a-zA-Z0-9"
-otherChar = r"ဣဤဥဦဧဩဪဿ၌၍၏၀-၉၊။!-/:-@[-`{-~\s"
-ssSymbol = r"္"
-aThat = r"်င်္"
-
 CleanPattern = re.compile(r'\d+|[၊။!-/:-@[-`{-~\t ]|[A-za-z0-9]')
 
 def clean_sentence(sentence):
     cleaned = CleanPattern.sub("",sentence)
     return cleaned
 
-BreakPattern = re.compile(r"((?<!" + ssSymbol + r")["+ myConsonant + r"](?![" + aThat + ssSymbol + r"])" + r"|[" + enChar + otherChar + r"])",re.UNICODE)
+BreakPattern = re.compile(r'(?:(?<!္)([က-ဪဿ၊-၏]|[၀-၉]+|[^က-၏]+)(?![ှျ]?[့္်])+|[a-zA-Z0-9])')
 
 def syllable(sentence):
     sentence = sentence.replace(" ",'')
     sentence = sentence.replace("္","်")
-    line = BreakPattern.sub("/"+r"\1",sentence)
+    line = BreakPattern.sub(sOption+r"\1",sentence)
     return line
 
 data = ""
