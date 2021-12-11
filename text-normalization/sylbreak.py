@@ -17,7 +17,7 @@ def clean_sentence(sentence):
     cleaned = CleanPattern.sub("",sentence)
     return cleaned
 
-BreakPattern = re.compile(r'(?:(?<!္)([က-ဪဿ၊-၏]|[၀-၉]+|[^က-၏]+)(?![ှျ]?[့္်])+|[a-zA-Z0-9])')
+BreakPattern = re.compile(r'(?:(?<!္)([က-ဪဿ၊-၏]|[၀-၉]+|[^က-၏]+)(?![ှျ]?[့္်]))')
 
 def syllable(sentence):
     sentence = sentence.replace(" ",'')
