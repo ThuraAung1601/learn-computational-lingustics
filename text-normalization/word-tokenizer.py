@@ -44,8 +44,7 @@ def tokenize(line):
     line = removeStopWord(line,"../data/stop_words.txt")
     sentence = pds.tokenize(line,form="word")
     sentence = sOption.join([str(elem) for elem in sentence])
-    cleaned = clean_sentence(sentence)
-    return cleaned
+    return sentence
 
 with open(file_path) as fp:
     line = fp.readline()
@@ -56,5 +55,6 @@ with open(file_path) as fp:
 # Writing Data to Output File
 if outFile:
     with open(outFile, 'w',  encoding='utf-8') as file:
-        file.write(data)
+        cleaned = clean_sentence(data)
+        file.write(cleaned)
         print(f"Sylbreak succcessfully done. Write data to {outFile}")
