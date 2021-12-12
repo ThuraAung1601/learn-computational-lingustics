@@ -1,3 +1,10 @@
+'''
+author : Thura Aung
+Tokenization
+Stop words remove 
+Cleanning - remove punctuations, english numbers and letters
+Ready to use for text pre-processing 
+'''
 import argparse
 import re
 import pyidaungsu as pds
@@ -15,36 +22,31 @@ data = ""
 
 CleanPattern = re.compile(r'\d+|[၊။!-/:-@[-`{-~\t ]|[A-za-z0-9]')
 
+stopwordslist = []
+slist = []
+with open("../data/stop_words.txt", encoding = 'utf8') as stopwordsfile:
+    stopwords = stopwordsfile.readlines()
+    slist.extend(stopwords)
+
+    for w in range(len(slist)):
+        temp = slist[w]
+        stopwordslist.append(temp.rstrip())
+        
+
 def clean_sentence(sentence):
-    sentence = sentence.replace(" ",'')
-    sent = CleanPattern.sub("",sentence)
+    sent = CleanPattern.sub(" ",sentence)
     return sent
 
-def removeStopWord(text,stopwordslist):
-    text = text
-    returnList = []       
-    
-    for i in text:
-        if i in stopwordslist:
-            continue
-        else:
-            returnList.append(i)
-
-    temp = ""
-    for j in returnList:
-        if (len(returnList)>0):
-            if j == returnList[-1]:
-                temp += j
-            else:
-                temp += j + ""
-            
-    return temp
+def removeStopWord(token,stop_words):
+    for word in token:
+        if word not in stop_words:
+            cleaned_token.append(word)
 
 def tokenize(line):
-    line = removeStopWord(line,"../data/stop_words.txt")
     sentence = pds.tokenize(line,form="word")
-    sentence = sOption.join([str(elem) for elem in sentence])
-    return sentence
+    sentence = removeStopWord(sentence,stopwordslist)
+    cleaned = clean_sentence(sentence)
+    return cleaned
 
 with open(file_path) as fp:
     line = fp.readline()
@@ -55,6 +57,5 @@ with open(file_path) as fp:
 # Writing Data to Output File
 if outFile:
     with open(outFile, 'w',  encoding='utf-8') as file:
-        cleaned = clean_sentence(data)
-        file.write(cleaned)
+        file.write(data)
         print(f"Sylbreak succcessfully done. Write data to {outFile}")
