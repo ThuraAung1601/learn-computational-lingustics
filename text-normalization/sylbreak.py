@@ -1,4 +1,4 @@
-sentenceimport argparse
+import argparse
 import re
 
 parser = argparse.ArgumentParser(description='Syllable segmentation for Myanmar language')
