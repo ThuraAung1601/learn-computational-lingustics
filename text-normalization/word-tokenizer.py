@@ -58,4 +58,4 @@ with open(file_path) as fp:
 if outFile:
     with open(outFile, 'w',  encoding='utf-8') as file:
         file.write(data)
-        print(f"Sylbreak succcessfully done. Write data to {outFile}")
+        print(f"Word Tokenization succcessfully done. Write data to {outFile}")
