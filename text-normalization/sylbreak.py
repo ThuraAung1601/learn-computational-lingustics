@@ -1,4 +1,4 @@
-import argparse
+sentenceimport argparse
 import re
 
 parser = argparse.ArgumentParser(description='Syllable segmentation for Myanmar language')
@@ -32,7 +32,7 @@ try:
    with open(inputFile, encoding='utf-8') as file:
       for line in file:
          # clean the task
-         cleaned = clean_sentence(sentence)
+         cleaned = clean_sentence(line)
          
          # start breaking
          line = syllable(cleaned)
