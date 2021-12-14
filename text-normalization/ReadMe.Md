@@ -39,10 +39,10 @@ python ./text-preprocessing.py -i ../data/input.txt -o output.txt -s "|"
 ကျန်းမာ တယ် ၊ ဒါပေမဲ့ အလုပ် များ တယ် ။ -----> ကျန်းမာ/adj တယ်/part ၊/punc ဒါပေမဲ့/conj အလုပ်/n များ/adj တယ်/part ။/punc
 မြန်မာ ပြည် လူ အခွင့် အရေး ကို လျစ်လျူမရှုဖို့ တိုက်တွန်း ။ -----> မြန်မာ/n ပြည်/n လူ/n အခွင့်/adj အရေး/n ကို/part လျစ်လျူမရှုဖို့/adj တိုက်တွန်း/adj ။/punc
 ```
-- I modified test portion of [myPos-v3.0](https://github.com/ye-kyaw-thu/myPOS/tree/master/corpus-ver-3.0) corpus without pipes "|" for training the HMM
+- Extracted 550 sentences from train portion and concatenate with the whole test portion of [myPos-v3.0](https://github.com/ye-kyaw-thu/myPOS/tree/master/corpus-ver-3.0) corpus without pipes "|" for training the HMM
 - How to train - input is training tagged corpus and output is model file including tagged word with probabilities
 ```{r, engine='bash', count_lines}
-python ./pos-tag-hmm-train.py -i ../data/train.txt -o hmmmodel.txt
+python ./pos-tag-hmm-train.py -i ../data/pos-tagging-train.txt -o hmmmodel.txt
 ```
 - How to run - input are test data for -i model file for -m and output is the tagged result
 ```{r, engine='bash', count_lines}
