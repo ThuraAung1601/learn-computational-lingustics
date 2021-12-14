@@ -11,7 +11,7 @@ import pyidaungsu as pds
 
 parser = argparse.ArgumentParser(description='Pre-processing for Myanmar language')
 parser.add_argument('-i', '--input', type=str, help='input file', required=True)
-parser.add_argument('-o', '--output', type=str, default='sylbreak_out.txt', help='output file', required=True)
+parser.add_argument('-o', '--output', type=str, default='preprocessing.txt', help='output file', required=True)
 parser.add_argument('-s', '--separator', type=str, default=r'|', help='the separator option for syllable (e.g. -s "/"), default is "|"', required=True)
 args = parser.parse_args()
 
