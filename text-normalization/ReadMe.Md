@@ -15,6 +15,7 @@
 ```{r, engine='bash', count_lines}
 python ./sylbreak.py -i ../data/input.txt -o output.txt -s " "
 ```
+
 #### Myanmar Text Preprocessing
 
 ```text
@@ -31,29 +32,18 @@ pip install pyidaungsu
 ```{r, engine='bash', count_lines}
 python ./text-preprocessing.py -i ../data/input.txt -o output.txt -s "|"
 ```
-#### Myanmar POS Tagging with Hidden Markov Models and variation on Viterbi Algorithm
 
-```text
-မင်္ဂလာ ပါ ။ -----> မင်္ဂလာ/n ပါ/part ။/punc
-နေကောင်း လား ။ -----> နေကောင်း/v လား/part ။/punc
-ကျန်းမာ တယ် ၊ ဒါပေမဲ့ အလုပ် များ တယ် ။ -----> ကျန်းမာ/adj တယ်/part ၊/punc ဒါပေမဲ့/conj အလုပ်/n များ/adj တယ်/part ။/punc
-မြန်မာ ပြည် လူ အခွင့် အရေး ကို လျစ်လျူမရှုဖို့ တိုက်တွန်း ။ -----> မြန်မာ/n ပြည်/n လူ/n အခွင့်/adj အရေး/n ကို/part လျစ်လျူမရှုဖို့/adj တိုက်တွန်း/adj ။/punc
-```
-- Extracted 550 sentences from train portion and concatenate with the whole test portion of [myPos-v3.0](https://github.com/ye-kyaw-thu/myPOS/tree/master/corpus-ver-3.0) corpus without pipes "|" for training the HMM
-- How to train - input is training tagged corpus and output is model file including tagged word with probabilities
+#### Edit distance calculation with Map-1 (Phonetic Mapping), Map-2 (Sound Mapping) and Map-3 (Vowel Position Mapping)
+- Used Professor Ye Kyaw Thu's [tool](https://github.com/ye-kyaw-thu/tools/blob/master/python/str2my-edit-distances.py) for edit distance calculation
+- How to run
 ```{r, engine='bash', count_lines}
-python ./pos-tag-hmm-train.py -i ../data/pos-tagging-train.txt -o hmmmodel.txt
-```
-- How to run - input are test data for -i model file for -m and output is the tagged result
-```{r, engine='bash', count_lines}
-python ./pos-tag.py -i ../data/pos-input.txt -m ./hmmmodel.txt -o output.txt
+python ./str2my-edit-distances.py --help
 ```
 
 References : 
 <br>
 [1] Maung, Zin Maung, and Yoshiki Mikami. "A rule-based syllable segmentation of Myanmar text." Proceedings of the IJCNLP-08 Workshop on NLP for Less Privileged Languages. 2008.
 <br>
-[2] Khin War War Htike, Ye Kyaw Thu, Zuping Zhang, Win Pa Pa, Yoshinori Sagisaka and Naoto Iwahashi, "Comparison of Six POS Tagging Methods on 10K Sentences Myanmar Language (Burmese) POS Tagged Corpus", at 18th International Conference on Computational Linguistics and Intelligent Text Processing (CICLing 2017), April 17~23, 2017, Budapest, Hungary.
+[2] Khaing Hsu Wai, Ye Kyaw Thu, Swe Zin Moe, Hnin Aye Thant, Thepchai Supnithi, "Myanmar (Burmese) String Similarity Measures based on Phoneme Similarity", Journal of Intelligent Informatics and Smart Technology, April 1st Issue, 2020, pp. 27-34. (submitted December 21, 2019; accepted March 6, 2020; revised March 16, 2020; published online April 30, 2020) JIIST 2020 Journal Paper
 <br>
-[3] Zar Zar Hlaing, Ye Kyaw Thu, Myat Myo Nwe Wai, Thepchai Supnithi, Ponrudee Netisopakul, "Myanmar POS resource extension effects on automatic tagging methods", In Proceedings of the 15th International Joint Symposium on Artificial Intelligence and Natural Language Processing (iSAI-NLP 2020), Nov 18 to Nov 20, 2020, Bangkok, Thailand, pp. 189-194. 
-
+[3] Khaing Hsu Wai, Ye Kyaw Thu, Hnin Aye Thant, Swe Zin Moe and Thepchai Supnithi, "String Similarity Measures for Myanmar Language (Burmese)", The First Workshop on NLP Solutions for Under Resourced Languages (NSURL 2019), 11-13 September 2019, Trento, Italy
