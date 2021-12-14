@@ -6,7 +6,7 @@ import argparse
 import re
 import pyidaungsu as pds
 
-parser = argparse.ArgumentParser(description='Pre-processing for Myanmar language')
+parser = argparse.ArgumentParser(description='POS-tagging for Myanmar language')
 parser.add_argument('-i', '--input', type=str, help='input file', required=True)
 parser.add_argument('-m', '--model', type=str, default='hmmmodel.txt', help='the model for tagging', required=True)
 parser.add_argument('-o', '--output', type=str, default='output.txt', help='output file', required=True)
