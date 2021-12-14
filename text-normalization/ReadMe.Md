@@ -21,6 +21,12 @@ python ./sylbreak.py -i ../data/input.txt -o output.txt -s " "
 ကျွန်တော် ကျန်းမာတယ်၊ ဒါပေမဲ့ အလုပ်များတယ်။ -----> ကျန်းမာ + တယ် + အလုပ် + များ + တယ်
 မြန်မာပြည်လူအခွင့်အရေးကိုလျစ်လျူမရှုဖို့တိုက်တွန်း -----> မြန်မာ + ပြည် + လူ + အခွင့် + အရေး + ကို + လျစ်လျူမရှု + ဖို့ + တိုက်တွန်း
 ```
+- Cleaning the text - remove all punc including "။" and english words and numbers
+- Remove stop words and
+- Tokenize the text using pyidaungsu library 
+```{r, engine='bash', count_lines}
+pip install pyidaungsu
+```
 - How to run - use -s for seperating
 ```{r, engine='bash', count_lines}
 python ./text-preprocessing.py -i ../data/input.txt -o output.txt -s "|"
