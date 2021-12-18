@@ -6,9 +6,8 @@ This repository is course works of "Natural Language Processing" course provided
 - Regular Expressions, Text Normalization, Edit Distance	
 - N-gram Language Models	
 - Text Classification
-- Neural Networks and Neural Language Models	
 - Parts of Speech Tagging
-- Deep Learning Architectures for Sequence Processing
+- Neural Networks and Deep Learning 
 - Machine Translation
 
 <br>
