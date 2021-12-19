@@ -1,6 +1,6 @@
 ## Regular Expressions, Text Normalization, Edit Distance
 
-#### Syllable Segmentation
+#### Syllable-level Segmentation
 
 ```text
 ကျောင်းသား -----> ကျောင်း + သား 
@@ -15,6 +15,18 @@
 ```{r, engine='bash', count_lines}
 python ./sylbreak.py -i ../data/input.txt -o output.txt -s " "
 ```
+#### Syllable-based Word Segmentation using maximum matching
+
+```text
+နောက်ဆုံးဆန်ကာတင် ဖိုင်နယ်ထိ တက်ရောက်နိုင်ခဲ့တဲ့ မယ်လိုဒီခေါင် ---> နောက်ဆုံး + ဆန် + ကာ + တင် + ဖိုင် + နယ် + ထိ + တက်ရေ + ာက + ်နိုင် + ခဲ့ + တဲ့ + မယ် + လို + ဒီ + ခေါင် 
+သတင်း ရုပ်ရှင်လောကအတွက် အပြောင်းအလဲ ဖြစ်လာမည်ဟု မျှော်လင့် ---> သတင်း + ရုပ်ရှင် + လောက + အတွက် + အပြောင်းအလဲ + ဖြစ်လာ + မည် + ဟု + မျှော်လင့်
+```
+
+- How to run
+```{r, engine='bash', count_lines}
+python ./syllable-based-word-seg.py -i ../data/input.txt -o output.txt -d word-list.txt
+```
+
 
 #### Myanmar Text Preprocessing
 
