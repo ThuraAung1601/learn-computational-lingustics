@@ -17,6 +17,12 @@ inputFile = getattr(args, 'input')
 outFile = getattr(args, 'output')
 dictFile = getattr(args,'dictionary')
 
+w_list = []
+with open(dictFile, encoding = 'utf8') as filehandle:
+    for line in filehandle:
+        line = line.replace("\n","")
+        w_list.append(line)
+
 CleanPattern = re.compile(r'\d+|[၊။!-/:-@[-`{-~\t ]|[A-za-z0-9]')
 
 def clean_sentence(sentence):
@@ -58,7 +64,7 @@ try:
          
          # start breaking
          line = sylbreak(cleaned).split()
-         result = max_match(line,dictFile)
+         result = max_match(line,w_list)
          data += result
         
 except:
