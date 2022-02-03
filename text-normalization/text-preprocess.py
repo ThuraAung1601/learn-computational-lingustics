@@ -37,29 +37,16 @@ def clean_sentence(sentence):
     sent = CleanPattern.sub(" ",sentence)
     return sent
 
-def removeStopWord(text,stopwordslist):
-    vWord = text
-    returnList = []       
-    
-    for v in vWord:
-        if v in stopwordslist:
-            continue
-        else:
-            returnList.append(v)
-
-    tempp = ""
-    for ff in returnList:
-        if (len(returnList)>0):
-            if ff == returnList[-1]:
-                tempp += ff
-            else:
-                tempp += ff+" "
-            
-    return tempp
+def stop_word(sentence):
+  new_sentence = []
+  for word in sentence.split():
+    if word not in stopwordslist:
+      new_sentence.append(word)
+  return(' '.join(new_sentence))
 
 def tokenize(line):
     sentence = pds.tokenize(line,form="word")
-    sentence = removeStopWord(sentence,stopwordslist)
+    sentence = stop_word(sentence)
     cleaned = clean_sentence(sentence)
     return cleaned
 
