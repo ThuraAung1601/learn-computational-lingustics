@@ -10,6 +10,9 @@
 မင်္ဂလာပါ ----> မင်် + ဂ + လာ + ပါ
 ```
 ![syllable_structure](syllable-structure.png)
+- (၁) ဗျည်း (Consonant) ၏အနောက်တွင် အသတ် (Asat) မရှိရပါ၊ သို့မဟုတ် ဝိရာမသင်္ကေတ (Virama sign) မရှိရပါ။
+- (၂) ဗျည်း (Consonant) ၏အရှေ့တွင် ဝိရာမသင်္ကေတ (Virama sign) မရှိရပါ။
+- ဒီနှစ်ချက်လုံးနဲ့ ​သွေဖယ်​တဲ့ ဗျည်း(Consonant) ကိုသာ ဝဏ္ဏအဆုံးသတ်(Syllable Boundary) အဖြစ်သတ်မှတ်၍ ဝဏ္ဏဖြတ်​တောက်နိုင်ပါသည်။
 
 - How to run
 ```{r, engine='bash', count_lines}
